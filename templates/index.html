@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Data Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Agricultural Data Management System</h1>
+            <p>Manage your farm data efficiently with our comprehensive management system</p>
+        </header>
+        
+        <main class="main-content">
+            <div class="button-grid">
+                <a href="/farmers" class="nav-button farmers-btn">
+                    <div class="button-icon">👨‍🌾</div>
+                    <h3>Manage Farmers</h3>
+                    <p>Add, edit, and manage farmer information</p>
+                </a>
+                
+                <a href="/crops" class="nav-button crops-btn">
+                    <div class="button-icon">🌾</div>
+                    <h3>Manage Crops</h3>
+                    <p>Track crop information and seasons</p>
+                </a>
+                
+                <a href="/markets" class="nav-button markets-btn">
+                    <div class="button-icon">🏪</div>
+                    <h3>Manage Markets</h3>
+                    <p>Manage market locations and details</p>
+                </a>
+                
+                <a href="/transactions" class="nav-button transactions-btn">
+                    <div class="button-icon">💰</div>
+                    <h3>Manage Transactions</h3>
+                    <p>Record and track all transactions</p>
+                </a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 Agricultural Data Management System</p>
+        </footer>
+    </div>
+</body>
+</html>
+

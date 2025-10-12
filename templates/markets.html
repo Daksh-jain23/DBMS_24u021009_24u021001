@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markets Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Markets Data Management</h1>
+            <div class="header-actions">
+                <a href="/" class="back-btn">← Back to Home</a>
+                <button id="add-market-btn" class="add-btn">Add New Market</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="table-container">
+                <table id="markets-table">
+                    <thead>
+                        <tr>
+                            <th>Market ID</th>
+                            <th>Market Name</th>
+                            <th>Location</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="markets-table-body">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <!-- Add/Edit Market Modal -->
+        <div id="market-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add New Market</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="market-form">
+                    <div class="form-group">
+                        <label for="market-name">Market Name *</label>
+                        <input type="text" id="market-name" name="market_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Market</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Set current page context
+        window.currentPage = 'markets';
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Farmers Data Management</h1>
+            <div class="header-actions">
+                <a href="/" class="back-btn">← Back to Home</a>
+                <button id="add-farmer-btn" class="add-btn">Add New Farmer</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="table-container">
+                <table id="farmers-table">
+                    <thead>
+                        <tr>
+                            <th>Farmer ID</th>
+                            <th>Name</th>
+                            <th>Village</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="farmers-table-body">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <!-- Add/Edit Farmer Modal -->
+        <div id="farmer-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add New Farmer</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="farmer-form">
+                    <div class="form-group">
+                        <label for="farmer-name">Farmer Name *</label>
+                        <input type="text" id="farmer-name" name="farmer_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="village">Village</label>
+                        <input type="text" id="village" name="village">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Farmer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Set current page context
+        window.currentPage = 'farmers';
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

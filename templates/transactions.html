@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Transactions Data Management</h1>
+            <div class="header-actions">
+                <a href="/" class="back-btn">← Back to Home</a>
+                <button id="add-transaction-btn" class="add-btn">Add New Transaction</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="table-container">
+                <table id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Farmer</th>
+                            <th>Crop</th>
+                            <th>Market</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-table-body">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <!-- Add/Edit Transaction Modal -->
+        <div id="transaction-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add New Transaction</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="transaction-form">
+                    <div class="form-group">
+                        <label for="farmer-select">Farmer *</label>
+                        <select id="farmer-select" name="farmer_id" required>
+                            <option value="">Select a farmer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="crop-select">Crop *</label>
+                        <select id="crop-select" name="crop_id" required>
+                            <option value="">Select a crop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="market-select">Market *</label>
+                        <select id="market-select" name="market_id" required>
+                            <option value="">Select a market</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" name="quantity" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price per Unit *</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Transaction</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Set current page context
+        window.currentPage = 'transactions';
+    </script>
+</body>
+</html>
+

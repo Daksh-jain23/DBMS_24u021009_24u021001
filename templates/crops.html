@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crops Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crops Data Management</h1>
+            <div class="header-actions">
+                <a href="/" class="back-btn">← Back to Home</a>
+                <button id="add-crop-btn" class="add-btn">Add New Crop</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="table-container">
+                <table id="crops-table">
+                    <thead>
+                        <tr>
+                            <th>Crop ID</th>
+                            <th>Crop Name</th>
+                            <th>Season</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="crops-table-body">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <!-- Add/Edit Crop Modal -->
+        <div id="crop-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add New Crop</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="crop-form">
+                    <div class="form-group">
+                        <label for="crop-name">Crop Name *</label>
+                        <input type="text" id="crop-name" name="crop_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="season">Season</label>
+                        <input type="text" id="season" name="season" placeholder="e.g., Winter, Summer, Monsoon">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save Crop</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Set current page context
+        window.currentPage = 'crops';
+    </script>
+</body>
+</html>
+
