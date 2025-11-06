@@ -13,13 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function initializePage() {
-    // Set up event listeners
     setupEventListeners();
     
-    // Load data for the current page
     loadData();
     
-    // Load dropdown data for transactions page
     if (currentPage === 'transactions') {
         loadDropdownData();
     }
@@ -27,7 +24,6 @@ function initializePage() {
 
 // Set up all event listeners
 function setupEventListeners() {
-    // Add button click
     const addBtn = document.querySelector('.add-btn');
     if (addBtn) {
         addBtn.addEventListener('click', openAddModal);

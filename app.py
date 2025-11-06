@@ -1,5 +1,3 @@
-import os
-from urllib.parse import urlparse
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import mysql.connector
@@ -9,26 +7,13 @@ app = Flask(__name__)
 CORS(app)
 
 def get_db_config():
-    """Get database configuration from DATABASE_URL or fallback to local MySQL"""
-    database_url = os.environ.get("DATABASE_URL")
-
-    if database_url:
-        url = urlparse(database_url)
-        return {
-            'host': url.hostname,
-            'user': url.username,
-            'password': url.password,
-            'database': url.path.lstrip('/'),
-            'port': url.port or 3306
-        }
-    else:
-        # Fallback for local testing
-        return {
-            'host': 'localhost',
-            'user': 'root',
-            'password': 'D@ksh@SQL',
-            'database': 'dbms_proj'
-        }
+    return {
+        'host': 'switchback.proxy.rlwy.net',
+        'user': 'root',
+        'password': 'UaNadbfhNwAtHndrrTeKjCuNKsbeTGHB',
+        'database': 'dbms_proj',
+        'port': 37873
+    }
 
 def get_db_connection():
     """Create and return a database connection"""
@@ -231,5 +216,6 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
