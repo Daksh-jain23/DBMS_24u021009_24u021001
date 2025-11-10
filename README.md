@@ -70,9 +70,9 @@ Edit the `DB_CONFIG` in `app.py` to match your MySQL setup:
 ```python
 DB_CONFIG = {
     'host': 'localhost',
-    'user': 'your_username',      # Change this
-    'password': 'your_password',  # Change this
-    'database': 'agriculture_db'
+    'user': 'root',      # Change this to your username
+    'password': 'your_password',  # Change this to your password
+    'database': 'dbms_proj' # Change this if you are not using the given sql
 }
 ```
 

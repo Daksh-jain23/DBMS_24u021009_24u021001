@@ -304,6 +304,15 @@ async function handleFormSubmit(e) {
     const data = Object.fromEntries(formData.entries());
     
     console.log('Form data:', data);
+ 
+     // Basic client-side validations to avoid obvious DB constraint violations
+     if (currentPage === 'farmers') {
+         const phone = (data.phone || '').trim();
+         if (!/^[0-9]{10}$/.test(phone)) {
+             showMessage('Phone must be exactly 10 digits (0-9).', 'error');
+             return;
+         }
+     }
     
     // Convert numeric fields
     if (currentPage === 'transactions') {
@@ -312,6 +321,15 @@ async function handleFormSubmit(e) {
         data.farmer_id = parseInt(data.farmer_id);
         data.crop_id = parseInt(data.crop_id);
         data.market_id = parseInt(data.market_id);
+ 
+         if (!(data.quantity > 0)) {
+             showMessage('Quantity must be greater than 0.', 'error');
+             return;
+         }
+         if (!(data.price > 0)) {
+             showMessage('Price must be greater than 0.', 'error');
+             return;
+         }
     }
     
     try {
@@ -339,12 +357,24 @@ async function handleFormSubmit(e) {
             loadData();
             showMessage('Operation completed successfully!', 'success');
         } else {
-            const errorData = await response.json();
-            console.error('Error response:', errorData);
-            showMessage(`Error: ${errorData.message || 'Operation failed'}`, 'error');
+             let errorText = '';
+             try {
+                 const errorData = await response.json();
+                 console.error('Error response (json):', errorData);
+                 errorText = errorData.message || errorData.details || 'Operation failed';
+             } catch (_) {
+                 const text = await response.text();
+                 console.error('Error response (text):', text);
+                 errorText = text || 'Operation failed';
+             }
+             // Close the modal on error as requested
+             closeModal();
+             showMessage(`Error: ${errorText}`, 'error');
         }
     } catch (error) {
         console.error('Error submitting form:', error);
+         // Close the modal on error as requested
+         closeModal();
         showMessage(`Error: Failed to submit form - ${error.message}`, 'error');
     }
 }
@@ -364,8 +394,15 @@ async function deleteItem(item) {
                 loadData();
                 showMessage('Item deleted successfully!', 'success');
             } else {
-                const errorData = await response.json();
-                showMessage(`Error: ${errorData.message || 'Delete failed'}`, 'error');
+                 let errorText = '';
+                 try {
+                     const errorData = await response.json();
+                     errorText = errorData.message || errorData.details || 'Delete failed';
+                 } catch (_) {
+                     const text = await response.text();
+                     errorText = text || 'Delete failed';
+                 }
+                 showMessage(`Error: ${errorText}`, 'error');
             }
         } catch (error) {
             console.error('Error deleting item:', error);
